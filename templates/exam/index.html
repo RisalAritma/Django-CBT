@@ -1,1 +1,104 @@
-okokok
+{% extends "exam/base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <aside class="sidebar">
+      <button class="close-sidebar" onclick="toggleSidebar()">✕ Tutup</button>
+      <div class="app-name">CBT App</div>
+      <div class="profile">
+        <img src="user.jpg" alt="Foto Pengguna">
+        <p>Nama Pengguna</p>
+      </div>
+      <div class="question-grid">
+        <!-- Nomor soal (otomatis diulang dalam loop backend) -->
+        <button>1</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>1</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>1</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>1</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>
+        <button>99</button>
+        <button>2</button>
+        <button>2</button>
+        <button>2</button>       
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>98</button>
+        <button>99</button>
+        <button>100</button>
+   
+        <!-- dst sampai 100 -->
+      </div>
+      <div class="exit-button">
+        <button onclick="window.location.href='logout.php'">Keluar</button>
+      </div>
+    </aside>
+  
+    <main class="main-content">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+      <div class="timer">Sisa Waktu: 00:30:00</div>
+      <div class="question">
+        <p>1. Apa ibu kota Indonesia?</p>
+      </div>
+      <div class="options">
+        <label><input type="radio" name="q1"> A. Bandung</label>
+        <label><input type="radio" name="q1"> B. Surabaya</label>
+        <label><input type="radio" name="q1"> C. Jakarta</label>
+        <label><input type="radio" name="q1"> D. Medan</label>
+      </div>
+    </main>
+  </div> 
+
+  <script>
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('show');
+    }
+  </script>
+    
+{% endblock content %}
