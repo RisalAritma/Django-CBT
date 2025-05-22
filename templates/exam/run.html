@@ -16,7 +16,7 @@
       <div class="question-grid">
         {% for datatb in soal %}
           <a href="{% url 'exam:run' datatb.id %}">
-            <button class="button">{{ forloop.counter }}</button>
+            <button class="{% if datatb.number is soal_select.number %} select {% endif %}"> {{ datatb.number }} </button>
           </a>
         {% endfor %}             
       </div>
@@ -29,14 +29,20 @@
       <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
       <div class="timer">Sisa Waktu: 00:30:00</div>
       <div class="question">
-        <p>1. Apa ibu kota Indonesia?</p>
+        <p>{{soal_select.number}}. {{soal_select.text}}</p>
       </div>
       <div class="options">
-        <label><input type="radio" name="q1"> A. Bandung</label>
-        <label><input type="radio" name="q1"> B. Surabaya</label>
-        <label><input type="radio" name="q1"> C. Jakarta</label>
-        <label><input type="radio" name="q1"> D. Medan</label>
+        <label><input type="radio" name="q1"> A. {{soal_select.choice1}}</label>
+        <label><input type="radio" name="q1"> B. {{soal_select.choice2}}</label>
+        <label><input type="radio" name="q1"> C. {{soal_select.choice3}}</label>
+        <label><input type="radio" name="q1"> D. {{soal_select.choice4}}</label>
       </div>
+      <div class="action-buttons">
+        <button type="button" class="btn btn-primary"><< Preview &amp; Save</button>
+        <button type="submit" class="btn btn-warning"><< Save</button>
+        <button type="button" class="btn btn-warning">Next >></button>
+        <button type="submit" class="btn btn-primary">Save &amp; Next >></button>
+    </div>
     </main>
   </div> 
 

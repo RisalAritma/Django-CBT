@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+import uuid
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -8,3 +9,49 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+class QuestionBank(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=100)
+    subject = models.CharField(max_length=100)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+    
+class QuestionIndicator(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    indicator = models.CharField(max_length=100)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.indicator
+    
+
+class Question(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    number = models.IntegerField()
+    question_bank = models.ForeignKey(QuestionBank, on_delete=models.CASCADE)
+    indicator = models.ForeignKey(QuestionIndicator, on_delete=models.CASCADE)
+    text = models.TextField()
+    image = models.ImageField(upload_to='questions/', null=True, blank=True)
+    choice1 = models.TextField()
+    choice2 = models.TextField()
+    choice3 = models.TextField()
+    choice4 = models.TextField()
+    choice5 = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text[:50]
+    
+class QuestionAnswer(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
+    answer = models.CharField(max_length=10)
+    update_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.text[:50]
+    
