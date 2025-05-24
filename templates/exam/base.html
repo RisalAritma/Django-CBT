@@ -10,9 +10,42 @@
 </head>
 <body>
 
-    {% block content %}
-    <h1>NODATA</h1>
-    {% endblock content %}
+    <div class="container">
+    <aside class="sidebar">
+      <button class="close-sidebar" onclick="toggleSidebar()">✕ Tutup</button>
+      <div class="app-name">
+        <img src="/static/img/logo.png" width="30px" alt="Logo CBT">
+        <span>{{webname}}</span>
+      </div>
+      <div class="profile">
+        <img src="/static/img/user.png" alt="Foto Pengguna">
+        <p>Nama Pengguna</p>
+      </div>
+      <div class="question-grid">
+        {% for datatb in soal %}
+          <a href="{% url 'exam:run' datatb.id %}">
+            <button class="{% if datatb.number is soal_select.number %} select {% endif %}"> {{ datatb.number }} </button>
+          </a>
+        {% endfor %}             
+      </div>
+      <div class="exit-button">
+        <button onclick="document.getElementById('ModalLogout').classList.add('show')">Keluar</button> 
+      </div>
+    </aside>
+  
+    <main class="main-content">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+      <div class="timer">Sisa Waktu: 00:30:00</div>
+      {% block content %}
+      <h1>NODATA</h1>
+      {% endblock content %}      
+    </main>
+  </div> 
+
+
+
+
+    
 
     <div class="alert-container" id="alert-container">
         {% for message in messages %}
@@ -23,10 +56,31 @@
         {% endfor %}
     </div>
 
+
+    <!-- Modal -->
+<div id="ModalLogout" class="modal">
+  <div class="modal-content">
+    <h3>Konfirmasi</h3>
+    <p>Yakin Ingin Keluar</p><br>
+      <div class="action-buttons">
+        <button onclick="document.getElementById('ModalLogout').classList.remove('show')" class="btn btn-warning">Batal</button>
+        <a href="{% url 'logout' %}"> <button class="btn btn-primary">Ya</button></a>
+      </div>
+  </div>
+</div>
+
+
     
 
 </body>
 </html>
+
+
+<script>
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('show');
+}
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

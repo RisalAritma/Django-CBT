@@ -2,48 +2,54 @@
 
 {% block content %}
 
-  <div class="container">
-    <aside class="sidebar">
-      <button class="close-sidebar" onclick="toggleSidebar()">✕ Tutup</button>
-      <div class="app-name">
-        <img src="/static/img/logo.png" width="30px" alt="Logo CBT">
-        <span>{{webname}}</span>
+      <div class="info-section">
+        <h2 style="margin-bottom:16px;">INSTRUKSI PENGISIAN SELF ASSESSMENT</h2>
+        <p>
+          <b>Yth. Bapak/Ibu Guru PAUD,</b><br>
+          Selamat datang di platform Self-Assessment Kompetensi Guru PAUD dalam Membangun Numeracy dan Scientific Thinking Skill Anak.<br>
+          Instrumen ini dikembangkan oleh Pusat Riset Pendidikan – BRIN sebagai bagian dari penelitian tahun 2025 untuk mendukung peningkatan kualitas kompetensi guru PAUD, khususnya dalam menumbuhkembangkan keterampilan numerasi dan berpikir ilmiah anak usia dini.<br>
+          Mohon luangkan waktu sejenak untuk membaca dan mengikuti petunjuk berikut sebelum memulai:
+        </p>
+        <h4>Petunjuk Umum:</h4>
+        <ol>
+          <li>Waktu pengisian angket ini diperkirakan memerlukan 30–45 menit.</li>
+          <li>Tidak ada jawaban benar atau salah. Penilaian ini bersifat reflektif dan bukan evaluasi kinerja.</li>
+          <li>Jawablah setiap pernyataan dengan jujur, berdasarkan pengalaman nyata dalam kegiatan pembelajaran yang Bapak/Ibu lakukan.</li>
+          <li>Semua informasi yang diberikan bersifat rahasia dan hanya digunakan untuk keperluan riset. Identitas Bapak/Ibu tidak akan dicantumkan dalam laporan hasil penelitian.</li>
+          <li>Isian wajib akan ditandai dengan simbol (*), pastikan semua bagian terisi untuk dapat melanjutkan ke bagian berikutnya.</li>
+        </ol>
+        <h4>Cara Mengisi:</h4>
+        <ol>
+          <li>Baca setiap pernyataan dengan cermat.</li>
+          <li>Pilih jawaban yang paling sesuai dengan praktik atau pandangan pribadi Bapak/Ibu.</li>
+          <li>Jika terdapat pertanyaan terbuka, isilah dengan singkat, padat, dan jelas sesuai pengalaman atau pendapat Bapak/Ibu.</li>
+        </ol>
+        <p>
+          Terima kasih atas partisipasi Bapak/Ibu. Kontribusi Anda sangat berarti dalam peningkatan kualitas pendidikan anak usia dini di Indonesia.<br>
+          <b>Hormat kami,<br>
+          Tim Peneliti Pusat Riset Pendidikan dan Mitra Perguruan Tinggi<br>
+          Badan Riset dan Inovasi Nasional (BRIN)</b>
+        </p>
+        <hr style="margin: 24px 0;">
+        <div class="action-buttons">
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('ModalMulaiUjian').classList.add('show')">Mulai Ujian</button>        
+        </div>  
       </div>
-      <div class="profile">
-        <img src="/static/img/user.png" alt="Foto Pengguna">
-        <p>Nama Pengguna</p>
-      </div>
-      <div class="question-grid">
-        {% for datatb in soal %}
-          <a href="{% url 'exam:run' datatb.id %}">
-            <button class="button">{{ forloop.counter }}</button>
-          </a>
-        {% endfor %}             
-      </div>
-      <div class="exit-button">
-        <button onclick="window.location.href='logout.php'">Keluar</button>
-      </div>
-    </aside>
-  
-    <main class="main-content">
-      <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
-      <div class="timer">Sisa Waktu: 00:30:00</div>
-      <div class="question">
-        <p>1. Apa ibu kota Indonesia?</p>
-      </div>
-      <div class="options">
-        <label><input type="radio" name="q1"> A. Bandung</label>
-        <label><input type="radio" name="q1"> B. Surabaya</label>
-        <label><input type="radio" name="q1"> C. Jakarta</label>
-        <label><input type="radio" name="q1"> D. Medan</label>
-      </div>
-    </main>
-  </div> 
 
-  <script>
-    function toggleSidebar() {
-      document.querySelector('.sidebar').classList.toggle('show');
-    }
-  </script>
+
+
+<!-- Modal -->
+<div id="ModalMulaiUjian" class="modal">
+  <div class="modal-content">
+    <h3>Konfirmasi</h3>
+    <p>Waktu akan mulai berjalan ketikan anda menglik tombol MULAI</p><br>
+      <div class="action-buttons">
+        <button onclick="document.getElementById('ModalMulaiUjian').classList.remove('show')" class="btn btn-warning">Batal</button>
+        <a href="{% url 'exam:run' soal_no1.id %}"> <button class="btn btn-primary">Mulai Ujian</button></a>
+      </div>
+  </div>
+</div>
+
+
     
 {% endblock content %}

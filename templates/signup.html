@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="form-container">
+    <div class="form-container-signup">
         <h2>Create Account</h2>
         <form method="post">
             {% csrf_token %}
@@ -19,12 +19,88 @@
             </div>
             <div class="form-group">
                 <label for="phone">Phone:</label>
-                <input type="number" id="phone" name="phone" required>
+                <input type="text" id="phone" name="phone" required>
             </div>
             <div class="form-group">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
+                <label for="asal_paud">Asal PAUD:</label>
+                <input type="text" id="asal_paud" name="asal_paud" maxlength="100" required>
             </div>
+            <div class="form-group">
+                <label for="lokasi_paud">Lokasi PAUD:</label>
+                <input type="text" id="lokasi_paud" name="lokasi_paud" maxlength="255" required>
+            </div>
+            <div class="form-group">
+                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                <select id="jenis_kelamin" name="jenis_kelamin" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Perempuan">Perempuan</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="usia">Usia:</label>
+                <select id="usia" name="usia" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Kurang dari 25 Tahun">Kurang dari 25 Tahun</option>
+                    <option value="25–35 Tahun">25–35 Tahun</option>
+                    <option value="36–45 Tahun">36–45 Tahun</option>
+                    <option value="46–55 Tahun">46–55 Tahun</option>
+                    <option value="Lebih dari 55 Tahun">Lebih dari 55 Tahun</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pendidikan">Pendidikan Terakhir:</label>
+                <select id="pendidikan" name="pendidikan" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="SMA/SMK/MA/MAK">SMA/SMK/MA/MAK</option>
+                    <option value="D3">D3</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="lama_ngajar">Lama Mengajar:</label>
+                <select id="lama_ngajar" name="lama_ngajar" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Kurang dari 1 tahun">Kurang dari 1 tahun</option>
+                    <option value="1–5 tahun">1–5 tahun</option>
+                    <option value="6–10 tahun">6–10 tahun</option>
+                    <option value="Lebih dari 10 tahun">Lebih dari 10 tahun</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status_pegawai">Status Kepegawaian:</label>
+                <select id="status_pegawai" name="status_pegawai" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="PNS">PNS</option>
+                    <option value="Guru Tetap Yayasan">Guru Tetap Yayasan</option>
+                    <option value="PPPK">PPPK</option>
+                    <option value="Honorer">Honorer</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Apakah Pernah Pelatihan Numerasi & Scientific Thinking Anak Usia Dini?</label>
+                <label class="radio-inline">
+                    <input type="radio" name="apa_pernah_pelatihan" value="Ya" required> Ya
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="apa_pernah_pelatihan" value="Tidak"> Tidak
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Apakah Sudah PPG?</label>
+                <label class="radio-inline">
+                    <input type="radio" name="apa_sudah_ppg" value="Ya, telah lulus" required> Ya, telah lulus
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="apa_sudah_ppg" value="Ya, sedang berlangsung"> Ya, sedang berlangsung
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="apa_sudah_ppg" value="Belum pernah"> Belum pernah
+                </label>
+            </div>  
             <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>

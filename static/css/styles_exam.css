@@ -67,7 +67,7 @@ body {
 
 .sidebar .question-grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 6px;
     margin-bottom: 24px;
 }
@@ -84,6 +84,10 @@ body {
     box-shadow: 0 1px 3px rgba(33, 150, 243, 0.08);
     transition: background 0.2s, border 0.2s;
     border: 1px solid transparent; /* default border */
+    width: 32px;        /* Tambahkan lebar tetap */
+    height: 32px;       /* Opsional: agar tombol kotak */
+    text-align: center; /* Pastikan angka di tengah */
+    padding: 0;         /* Hilangkan padding default agar proporsional */
 }
 /* Jika ada class 'select', border lebih tebal dan warna biru */
 .sidebar .question-grid button.select {
@@ -322,3 +326,53 @@ body {
     from { opacity: 1; }
     to { opacity: 0; transform: translateY(-10px); }
 }
+
+
+/* STYLE MODAL */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 28px;
+    max-width: 350px;
+    margin: auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    text-align: center;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: #1976d2;
+    cursor: pointer;
+}
+
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* BUTTON */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */

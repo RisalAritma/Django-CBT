@@ -7,13 +7,13 @@ from .resources import QuestionResource
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone', 'address')
+    list_display = ('user', 'phone', 'asal_paud', 'lokasi_paud', 'jenis_kelamin', 'usia', 'pendidikan', 'lama_ngajar', 'status_pegawai', 'apa_pernah_pelatihan', 'apa_sudah_ppg')
     search_fields = ('user__username', 'phone')
     list_filter = ('user__is_staff',)
     ordering = ('user',)
     fieldsets = (
         (None, {
-            'fields': ('user', 'phone', 'address')
+            'fields': ('user', 'phone', 'asal_paud', 'lokasi_paud', 'jenis_kelamin', 'usia', 'pendidikan', 'lama_ngajar', 'status_pegawai', 'apa_pernah_pelatihan', 'apa_sudah_ppg')
         }),
     )
 

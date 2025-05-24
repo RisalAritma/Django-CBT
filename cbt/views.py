@@ -10,6 +10,10 @@ from exam.models import Profile
 
 
 
+def index(request):
+    return redirect('/login/')
+    
+
 def login_view(request):
     if request.method == "POST":
         print (request.POST)
@@ -48,8 +52,6 @@ def signup_view(request):
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
-        phone = request.POST.get('phone')
-        address = request.POST.get('address')
 
         # Validasi dasar
         if password1 != password2:
@@ -73,8 +75,16 @@ def signup_view(request):
         # Simpan profil terkait
         Profile.objects.create(
             user=user,
-            phone=phone,
-            address=address
+            phone=request.POST.get('phone'),
+            asal_paud=request.POST.get('asal_paud'),
+            lokasi_paud=request.POST.get('lokasi_paud'),
+            jenis_kelamin=request.POST.get('jenis_kelamin'),
+            usia=request.POST.get('usia'),
+            pendidikan=request.POST.get('pendidikan'),
+            lama_ngajar=request.POST.get('lama_ngajar'),
+            status_pegawai=request.POST.get('status_pegawai'),
+            apa_pernah_pelatihan=request.POST.get('apa_pernah_pelatihan'),
+            apa_sudah_ppg=request.POST.get('apa_sudah_ppg'),
         )
 
         messages.success(request, "Akun berhasil dibuat. Silakan login.")
