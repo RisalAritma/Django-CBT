@@ -299,7 +299,7 @@ body {
     overflow: hidden;
     font-size: 15px;
 }
-.alert-success { background: #2196f3; }
+.alert-success { background: #0ccf3a; }
 .alert-error { background: #e53935; }
 .alert-warning { background: #ffc107; color: #333; }
 .alert-info { background: #1976d2; }

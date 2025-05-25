@@ -2,29 +2,85 @@
 
 {% block content %}
 
-     <div class="question">
-        <p>{{soal_select.number}}. {{soal_select.text}}</p>
+  <form method="post" action="{% url 'exam:save' %}">
+      {% csrf_token %}
+      <input type="hidden" name="question_id" value="{{ soal_select.id }}">
+      <input type="hidden" name="question_next" value="{{ soal_next.id }}">
+      <div class="question">
+          <p>{{ soal_select.number }}. {{ soal_select.text }}</p>
       </div>
       <div class="options">
-        <label><input type="radio" name="q1"> A. {{soal_select.choice1}}</label>
-        <label><input type="radio" name="q1"> B. {{soal_select.choice2}}</label>
-        <label><input type="radio" name="q1"> C. {{soal_select.choice3}}</label>
-        <label><input type="radio" name="q1"> D. {{soal_select.choice4}}</label>
+          {% if soal_answer.random == 'ABCD' %}
+            <label>
+                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice1 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice2 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice3 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice4 }}
+            </label>
+          {% elif soal_answer.random == 'BCDA' %}
+            <label>
+                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice4 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice1 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice2 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice3 }}
+            </label>
+          {% elif soal_answer.random == 'CDAB' %}
+            <label>
+                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice3 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice4 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice1 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice2 }}
+            </label>
+          {% elif soal_answer.random == 'DABC' %}
+            <label>
+                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice2 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice3 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice4 }}
+            </label>
+            <label>
+                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice1 }}
+            </label>
+          {% endif %}
+
+
       </div>
       <div class="action-buttons">
         {% if  soal_select.number != soal_no_min.number %}
         <a href="{% url 'exam:run' soal_back.id %}">
           <button type="button" class="btn btn-primary"><< Preview &amp; Save</button>
-          <button type="submit" class="btn btn-warning"><< Preview</button>
+          <button type="button" class="btn btn-warning"><< Preview</button>
         </a>
         {% endif %}
         {% if  soal_select.number != soal_no_max.number %}
-        <a href="{% url 'exam:run' soal_next.id %}">
+         <a href="{% url 'exam:run' soal_next.id %}">
             <button type="button" class="btn btn-warning">Next >></button>
-            <button type="submit" class="btn btn-primary">Save &amp; Next >></button>
           </a>
+          <button type="submit" class="btn btn-primary">Save &amp; Next >></button>
         {% endif %}
       </div>
+    </form>
 
         
 {% endblock content %}

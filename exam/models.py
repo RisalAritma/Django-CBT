@@ -62,7 +62,7 @@ class QuestionAnswer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
     answer = models.CharField(max_length=10)
     update_at = models.DateTimeField(auto_now_add=True)
-    time_answer = models.DurationField(null=True, blank=True)
+    random = models.CharField(max_length=10, null=True, blank=True)
     
 
 class QuestionTime(models.Model):

@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from exam.models import Question, QuestionAnswer, QuestionTime
 from datetime import timedelta
+from django.contrib import messages
+import random as rnd
 import json
 
 # Create your views here.
@@ -32,6 +34,27 @@ def time_out(request):
         'heading': 'Time Out',
     }
     return render(request, 'exam/time_out.html', context)
+
+def save(request):
+    if request.method == "POST":
+        # Ambil data dari POST
+        question_id = request.POST.get("question_id")
+        question_next = request.POST.get("question_next")
+        answer = request.POST.get("answer")
+
+        # Update atau buat data QuestionAnswer
+        obj, created = QuestionAnswer.objects.update_or_create(
+            user=request.user,
+            question_id=question_id,
+            defaults={
+                "answer": answer,
+            }
+        )
+        messages.success(request, 'Jawaban Disimpan!')
+        return redirect('exam:run', id=question_next)
+    else:
+        messages.error(request, 'Metode tidak diizinkan!')
+
 
 
 def start(request):
@@ -69,6 +92,27 @@ def run(request, id):
     getTime = QuestionTime.objects.get(user=request.user)
     time_count = getTime.time_count
 
+    # Pilihan urutan random
+    random_choices = ["ABCD", "BCDA", "CDAB", "DABC"]
+    random_order = rnd.choice(random_choices)
+
+    # Update atau buat data QuestionAnswer
+    soal_answer = QuestionAnswer.objects.filter(
+        user=request.user,
+        question_id=soal_select.id
+    ).order_by('-id').first()
+
+    if soal_answer:
+        soal_answer.random = random_order
+        soal_answer.save()
+    else:
+        soal_answer = QuestionAnswer.objects.create(
+            user=request.user,
+            question_id=soal_select.id,
+            random=random_order,
+        )
+
+
     context = {
         'user': request.user,
         'title': 'Ujian Berjalan',
@@ -79,6 +123,7 @@ def run(request, id):
         'soal_no_max': Question.objects.order_by('-number').first(),
         'soal_next': soal_next,
         'soal_back': soal_back,
+        'soal_answer': soal_answer,
         'time_count' : time_count
     }
     return render(request, 'exam/run.html', context)
