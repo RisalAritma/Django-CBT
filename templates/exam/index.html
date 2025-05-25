@@ -45,7 +45,7 @@
     <p>Waktu akan mulai berjalan ketikan anda menglik tombol MULAI</p><br>
       <div class="action-buttons">
         <button onclick="document.getElementById('ModalMulaiUjian').classList.remove('show')" class="btn btn-warning">Batal</button>
-        <a href="{% url 'exam:run' soal_no1.id %}"> <button class="btn btn-primary">Mulai Ujian</button></a>
+        <a href="{% url 'exam:start' %}"> <button class="btn btn-primary">Mulai Ujian</button></a>
       </div>
   </div>
 </div>

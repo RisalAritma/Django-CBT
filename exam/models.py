@@ -62,6 +62,13 @@ class QuestionAnswer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
     answer = models.CharField(max_length=10)
     update_at = models.DateTimeField(auto_now_add=True)
-    def __str__(self):
-        return self.text[:50]
+    time_answer = models.DurationField(null=True, blank=True)
     
+
+class QuestionTime(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    time_count = models.DurationField(null=True, blank=True)
+
+
+

@@ -7,9 +7,6 @@ from django.contrib.auth.hashers import make_password
 from exam.models import Profile
 
 
-
-
-
 def index(request):
     return redirect('/login/')
     
@@ -70,6 +67,7 @@ def signup_view(request):
         user = User.objects.create(
             username=email,
             email=email,
+            first_name=request.POST.get('first_name'),
             password=make_password(password1)
         )
         # Simpan profil terkait

@@ -19,7 +19,7 @@
       </div>
       <div class="profile">
         <img src="/static/img/user.png" alt="Foto Pengguna">
-        <p>Nama Pengguna</p>
+        <p>{{user.first_name}}</p>
       </div>
       <div class="question-grid">
         {% for datatb in soal %}
@@ -35,7 +35,9 @@
   
     <main class="main-content">
       <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
-      <div class="timer">Sisa Waktu: 00:30:00</div>
+      <div class="timer">
+        Sisa Waktu: <span id="timer"></span>
+    </div>
       {% block content %}
       <h1>NODATA</h1>
       {% endblock content %}      
@@ -93,4 +95,48 @@ function toggleSidebar() {
         });
     });
 </script>
+
+
+
+<script>
+    // Jalankan countdown hanya jika judul adalah "Ujian Berjalan"
+    {% if title == "Ujian Berjalan" %}
+    var totalSeconds = {{ time_count.total_seconds|default:0|floatformat:0 }};
+    function formatTime(secs) {
+        var h = Math.floor(secs / 3600);
+        var m = Math.floor((secs % 3600) / 60);
+        var s = secs % 60;
+        return (
+            (h > 0 ? (h < 10 ? "0" : "") + h + ":" : "") +
+            (m < 10 ? "0" : "") + m + ":" +
+            (s < 10 ? "0" : "") + s
+        );
+    }
+    function updateTimer() {
     
+        // Kirim update waktu ke server setiap detik
+        fetch("{% url 'exam:update_time' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({ time_count: totalSeconds })
+        });
+
+        if (totalSeconds <= 0) {
+            document.getElementById("timer").innerHTML = "00:00";
+            window.location.href = "{% url 'exam:time_out' %}";
+            return;
+        }
+        document.getElementById("timer").innerHTML = formatTime(totalSeconds);
+
+        totalSeconds--;
+        setTimeout(updateTimer, 1000);
+    }
+    updateTimer();
+    {% else %}
+    document.getElementById("timer").innerHTML = "{{ time_count }}";
+    {% endif %}
+</script>
+
