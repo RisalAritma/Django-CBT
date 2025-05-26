@@ -75,10 +75,15 @@ def start(request):
     else:        
         soal = Question.objects.order_by('number').first()
         return redirect('exam:run', id=soal.id)
-
-
-
     
+def stop(request):
+    ut = QuestionTime.objects.get(user=request.user)
+    ut.time_count = timedelta(0)
+    ut.save()
+    messages.success(request, 'Ujian Berhenti!')
+    return redirect('exam:time_out')
+
+
 def run(request, id):
     soal = Question.objects.all().order_by('number')
     # Buat list baru dengan jawaban user (jika ada)

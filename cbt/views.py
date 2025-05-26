@@ -79,6 +79,7 @@ def signup_view(request):
             jenis_kelamin=request.POST.get('jenis_kelamin'),
             usia=request.POST.get('usia'),
             pendidikan=request.POST.get('pendidikan'),
+            jurusan=request.POST.get('jurusan'),
             lama_ngajar=request.POST.get('lama_ngajar'),
             status_pegawai=request.POST.get('status_pegawai'),
             apa_pernah_pelatihan=request.POST.get('apa_pernah_pelatihan'),

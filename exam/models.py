@@ -10,6 +10,7 @@ class Profile(models.Model):
     jenis_kelamin = models.CharField(max_length=15, blank=True)
     usia = models.CharField(max_length=30, blank=True)
     pendidikan = models.CharField(max_length=30, blank=True)
+    jurusan = models.CharField(max_length=100, blank=True)
     lama_ngajar = models.CharField(max_length=30, blank=True)
     status_pegawai = models.CharField(max_length=30, blank=True)
     apa_pernah_pelatihan = models.CharField(max_length=10, blank=True)
@@ -30,7 +31,7 @@ class QuestionBank(models.Model):
     
 class QuestionIndicator(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    indicator = models.CharField(max_length=100)
+    indicator = models.TextField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

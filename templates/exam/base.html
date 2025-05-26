@@ -10,11 +10,11 @@
 </head>
 <body>
 
-    <div class="container">
+  <div class="container">
     <aside class="sidebar">
       <button class="close-sidebar" onclick="toggleSidebar()">✕ Tutup</button>
       <div class="app-name">
-        <img src="{% static 'img/logo.png' %}" width="30px" alt="Logo CBT">
+        <img src="{% static 'img/logo.png' %}" width="50px" alt="Logo CBT">
         <span>{{webname}}</span>
       </div>
       <div class="profile">
@@ -37,15 +37,14 @@
     </aside>
   
     <main class="main-content">
-      <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
-      <div class="timer">
-        Sisa Waktu: <span id="timer"></span>
-    </div>
+      <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>      
       {% block content %}
       <h1>NODATA</h1>
       {% endblock content %}      
     </main>
-  </div> 
+  </div>
+
+
     
 
     <div class="alert-container" id="alert-container">

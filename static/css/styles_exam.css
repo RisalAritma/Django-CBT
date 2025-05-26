@@ -84,8 +84,8 @@ body {
     box-shadow: 0 1px 3px rgba(33, 150, 243, 0.08);
     transition: background 0.2s, border 0.2s;
     border: 1px solid transparent; /* default border */
-    width: 32px;        /* Tambahkan lebar tetap */
-    height: 32px;       /* Opsional: agar tombol kotak */
+    width: 30px;        /* Tambahkan lebar tetap */
+    height: 20px;       /* Opsional: agar tombol kotak */
     text-align: center; /* Pastikan angka di tengah */
     padding: 0;         /* Hilangkan padding default agar proporsional */
 }

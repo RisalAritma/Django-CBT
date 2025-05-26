@@ -21,6 +21,6 @@ class QuestionResource(resources.ModelResource):
         # Hapus id dari import_id_fields agar tidak wajib ada
         import_id_fields = []  # <- baris penting
         fields = (
-            'number', 'question_bank', 'indicator', 'bagian', 'kompetensi', 'text',
+            'number', 'question_bank', 'indicator', 'text',
             'choice1', 'choice2', 'choice3', 'choice4', 'choice5',
         )

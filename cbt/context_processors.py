@@ -6,8 +6,8 @@ from django.conf import settings
 def web_name(request):
     return {
         'baseurl': 'http://127.0.0.1:8000/',
-        'web_name': 'Ujian Kompetensi Guru Paud',
-        'webname': 'UjianKGP',
+        'web_name': 'Self Assessment Kompetensi Guru PAUD',
+        'webname': 'SelfAssessment',
         'address': 'Jl.....',
         'address_ttd': 'Makassar',
         'telp': '(0422) 22559',

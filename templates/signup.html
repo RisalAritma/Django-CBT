@@ -31,7 +31,12 @@
             </div>
             <div class="form-group">
                 <label for="lokasi_paud">Lokasi PAUD:</label>
-                <input type="text" id="lokasi_paud" name="lokasi_paud" maxlength="255" required>
+                <select id="lokasi_paud" name="lokasi_paud" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Kota Yogyakarta">Kota Yogyakarta</option>
+                    <option value="Kota Makassar">Kota Makassar</option>
+                    <option value="Kota Balikpapan">Kota Balikpapan</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="jenis_kelamin">Jenis Kelamin:</label>
@@ -62,6 +67,10 @@
                     <option value="S2">S2</option>
                     <option value="S3">S3</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="jurusan">Jurusan:</label>
+                <input type="text" id="jurusan" name="jurusan" maxlength="100" required>
             </div>
             <div class="form-group">
                 <label for="lama_ngajar">Lama Mengajar:</label>

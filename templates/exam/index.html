@@ -2,38 +2,45 @@
 
 {% block content %}
 
+      <div class="timer">
+        INFORMASI
+      </div>
+
       <div class="info-section">
-        <h2 style="margin-bottom:16px;">INSTRUKSI PENGISIAN SELF ASSESSMENT</h2>
+        <center>
         <p>
-          <b>Yth. Bapak/Ibu Guru PAUD,</b><br>
-          Selamat datang di platform Self-Assessment Kompetensi Guru PAUD dalam Membangun Numeracy dan Scientific Thinking Skill Anak.<br>
-          Instrumen ini dikembangkan oleh Pusat Riset Pendidikan – BRIN sebagai bagian dari penelitian tahun 2025 untuk mendukung peningkatan kualitas kompetensi guru PAUD, khususnya dalam menumbuhkembangkan keterampilan numerasi dan berpikir ilmiah anak usia dini.<br>
-          Mohon luangkan waktu sejenak untuk membaca dan mengikuti petunjuk berikut sebelum memulai:
+          <h2>Selamat datang Bapak/Ibu Guru PAUD Indonesia</h2><br>
+          <h2>pada Platform Self Assessment Kompetensi Guru PAUD Dalam Membangun Numeracy dan Scientific Thinking Anak.</h2>
         </p>
-        <h4>Petunjuk Umum:</h4>
-        <ol>
-          <li>Waktu pengisian angket ini diperkirakan memerlukan 30–45 menit.</li>
-          <li>Tidak ada jawaban benar atau salah. Penilaian ini bersifat reflektif dan bukan evaluasi kinerja.</li>
-          <li>Jawablah setiap pernyataan dengan jujur, berdasarkan pengalaman nyata dalam kegiatan pembelajaran yang Bapak/Ibu lakukan.</li>
-          <li>Semua informasi yang diberikan bersifat rahasia dan hanya digunakan untuk keperluan riset. Identitas Bapak/Ibu tidak akan dicantumkan dalam laporan hasil penelitian.</li>
-          <li>Isian wajib akan ditandai dengan simbol (*), pastikan semua bagian terisi untuk dapat melanjutkan ke bagian berikutnya.</li>
-        </ol>
-        <h4>Cara Mengisi:</h4>
-        <ol>
-          <li>Baca setiap pernyataan dengan cermat.</li>
-          <li>Pilih jawaban yang paling sesuai dengan praktik atau pandangan pribadi Bapak/Ibu.</li>
-          <li>Jika terdapat pertanyaan terbuka, isilah dengan singkat, padat, dan jelas sesuai pengalaman atau pendapat Bapak/Ibu.</li>
+      </center>
+        <p>
+          Self Assessment ini dikembangkan oleh Pusat Riset Pendidikan, Organisasi Riset Ilmu Sosial dan Humaniora (OR IPSH), BRIN bekerjasama dengan Universitas Negeri Makassar, Universitas Negeri Jakarta dan Universitas Islam Alauddin Makassar sebagai bentuk dedikasi pada peningkatan kualitas kompetensi guru PAUD, khususnya dalam menumbuhkembangkan keterampilan numeracy dan scientific thinking skill Anak Usia Dini.
+        </p>
+        <p>
+          Penelitian dan Pengembangan ini didanai oleh Rumah Program IPSH BRIN Tahun 2025 sebagai bagian dari upaya strategis dalam mendukung penguatan ekosistem PAUD di Indonesia.
+        </p>
+        <p>
+          Mohon luangkan waktu sejenak untuk membaca dan mengikuti petunjuk berikut sebelum memulai self assessment:
+        </p>
+        <h4>Petunjuk Pengisian</h4>
+        <ol  style="margin-left: 45px;">
+          <li>Bacalah setiap butir pernyataan dengan saksama.</li>
+          <li>Pelaksanaan self assessment berbasis web ini memerlukan waktu 45–60 menit.</li>
+          <li>Assessment akan berakhir secara otomatis setelah melebihi 60 menit.</li>
+          <li>Tidak ada jawaban yang salah, assessment ini bersifat reflektif, bukan evaluasi kinerja.</li>
+          <li>Jawablah setiap butir pertanyaan dengan jujur, karena kejujuran adalah kunci utama agar hasil yang diperoleh bermanfaat.</li>
+          <li>Pernyataan dapat dijawab tidak secara berurutan; kerjakan sesuai kenyamanan Anda.</li>
+          <li>Klik “Next” dan “Save” untuk menyimpan jawaban dan berpindah ke pernyataan berikutnya.</li>
+          <li>Klik “Previous” untuk kembali ke pernyataan sebelumnya, atau gunakan menu navigasi di sebelah kiri untuk mengecek butir yang belum terjawab.</li>
+          <li>Klik “End” jika semua butir telah selesai dan Anda telah yakin dengan seluruh jawaban.</li>
+          <li>Seluruh informasi yang diberikan bersifat rahasia dan hanya digunakan untuk keperluan riset.</li>
         </ol>
         <p>
-          Terima kasih atas partisipasi Bapak/Ibu. Kontribusi Anda sangat berarti dalam peningkatan kualitas pendidikan anak usia dini di Indonesia.<br>
-          <b>Hormat kami,<br>
-          Tim Peneliti Pusat Riset Pendidikan dan Mitra Perguruan Tinggi<br>
-          Badan Riset dan Inovasi Nasional (BRIN)</b>
+          Terima kasih atas partisipasi Bapak/Ibu guru PAUD. Kontribusi Anda sangat berarti dalam peningkatan kualitas PAUD di Indonesia.
         </p>
-        <hr style="margin: 24px 0;">
         <div class="action-buttons">
-          <button type="button" class="btn btn-primary" onclick="document.getElementById('ModalMulaiUjian').classList.add('show')">Mulai Ujian</button>        
-        </div>  
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('ModalMulaiUjian').classList.add('show')">Mulai Self Assessment</button>
+        </div>
       </div>
 
 
@@ -45,7 +52,7 @@
     <p>Waktu akan mulai berjalan ketikan anda menglik tombol MULAI</p><br>
       <div class="action-buttons">
         <button onclick="document.getElementById('ModalMulaiUjian').classList.remove('show')" class="btn btn-warning">Batal</button>
-        <a href="{% url 'exam:start' %}"> <button class="btn btn-primary">Mulai Ujian</button></a>
+        <a href="{% url 'exam:start' %}"> <button class="btn btn-primary">Mulai</button></a>
       </div>
   </div>
 </div>
