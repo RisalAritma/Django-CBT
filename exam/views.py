@@ -59,7 +59,7 @@ def save(request):
 
 def start(request):
     try:
-        answer_last = QuestionAnswer.objects.filter(user=request.user).order_by('-time_answer').first()
+        answer_last = QuestionAnswer.objects.filter(user=request.user).order_by('-update_at').first()
     except QuestionAnswer.DoesNotExist:
         answer_last = None
 
@@ -78,6 +78,17 @@ def start(request):
     
 def run(request, id):
     soal = Question.objects.all().order_by('number')
+    # Buat list baru dengan jawaban user (jika ada)
+    soal_with_jawab = []
+    for s in soal:
+        answer_obj = QuestionAnswer.objects.filter(user=request.user, question=s).order_by('-id').first()
+        jawab = answer_obj.answer if answer_obj else ""
+        soal_with_jawab.append({
+            'soal': s,
+            'jawab': jawab,
+        })
+    
+
     soal_select = Question.objects.get(id=id)
     try:
         soal_next = Question.objects.get(number=soal_select.number + 1)
@@ -102,10 +113,7 @@ def run(request, id):
         question_id=soal_select.id
     ).order_by('-id').first()
 
-    if soal_answer:
-        soal_answer.random = random_order
-        soal_answer.save()
-    else:
+    if not soal_answer:        
         soal_answer = QuestionAnswer.objects.create(
             user=request.user,
             question_id=soal_select.id,
@@ -117,7 +125,7 @@ def run(request, id):
         'user': request.user,
         'title': 'Ujian Berjalan',
         'heading': 'Dashboard Ujian',
-        'soal': soal,
+        'soal': soal_with_jawab,
         'soal_select': soal_select,
         'soal_no_min': Question.objects.order_by('number').first(),
         'soal_no_max': Question.objects.order_by('-number').first(),

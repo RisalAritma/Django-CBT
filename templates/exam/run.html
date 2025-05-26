@@ -12,55 +12,55 @@
       <div class="options">
           {% if soal_answer.random == 'ABCD' %}
             <label>
-                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice1 }}
+                <input type="radio" name="answer" value="A" {% if soal_answer.answer == "A" %}checked{% endif %} required> A. {{ soal_select.choice1 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice2 }}
+                <input type="radio" name="answer" value="B" {% if soal_answer.answer == "B" %}checked{% endif %}> B. {{ soal_select.choice2 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice3 }}
+                <input type="radio" name="answer" value="C" {% if soal_answer.answer == "C" %}checked{% endif %}> C. {{ soal_select.choice3 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice4 }}
+                <input type="radio" name="answer" value="D" {% if soal_answer.answer == "D" %}checked{% endif %}> D. {{ soal_select.choice4 }}
             </label>
           {% elif soal_answer.random == 'BCDA' %}
             <label>
-                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice4 }}
+                <input type="radio" name="answer" value="A" {% if soal_answer.answer == "A" %}checked{% endif %} required> A. {{ soal_select.choice4 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice1 }}
+                <input type="radio" name="answer" value="B" {% if soal_answer.answer == "B" %}checked{% endif %}> B. {{ soal_select.choice1 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice2 }}
+                <input type="radio" name="answer" value="C" {% if soal_answer.answer == "C" %}checked{% endif %}> C. {{ soal_select.choice2 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice3 }}
+                <input type="radio" name="answer" value="D" {% if soal_answer.answer == "D" %}checked{% endif %}> D. {{ soal_select.choice3 }}
             </label>
           {% elif soal_answer.random == 'CDAB' %}
             <label>
-                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice3 }}
+                <input type="radio" name="answer" value="A" {% if soal_answer.answer == "A" %}checked{% endif %} required> A. {{ soal_select.choice3 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice4 }}
+                <input type="radio" name="answer" value="B" {% if soal_answer.answer == "B" %}checked{% endif %}> B. {{ soal_select.choice4 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice1 }}
+                <input type="radio" name="answer" value="C" {% if soal_answer.answer == "C" %}checked{% endif %}> C. {{ soal_select.choice1 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice2 }}
+                <input type="radio" name="answer" value="D" {% if soal_answer.answer == "D" %}checked{% endif %}> D. {{ soal_select.choice2 }}
             </label>
           {% elif soal_answer.random == 'DABC' %}
             <label>
-                <input type="radio" name="answer" value="A" required> A. {{ soal_select.choice2 }}
+                <input type="radio" name="answer" value="A" {% if soal_answer.answer == "A" %}checked{% endif %} required> A. {{ soal_select.choice2 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="B"> B. {{ soal_select.choice3 }}
+                <input type="radio" name="answer" value="B" {% if soal_answer.answer == "B" %}checked{% endif %}> B. {{ soal_select.choice3 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="C"> C. {{ soal_select.choice4 }}
+                <input type="radio" name="answer" value="C" {% if soal_answer.answer == "C" %}checked{% endif %}> C. {{ soal_select.choice4 }}
             </label>
             <label>
-                <input type="radio" name="answer" value="D"> D. {{ soal_select.choice1 }}
+                <input type="radio" name="answer" value="D" {% if soal_answer.answer == "D" %}checked{% endif %}> D. {{ soal_select.choice1 }}
             </label>
           {% endif %}
 
@@ -69,7 +69,6 @@
       <div class="action-buttons">
         {% if  soal_select.number != soal_no_min.number %}
         <a href="{% url 'exam:run' soal_back.id %}">
-          <button type="button" class="btn btn-primary"><< Preview &amp; Save</button>
           <button type="button" class="btn btn-warning"><< Preview</button>
         </a>
         {% endif %}

@@ -23,8 +23,11 @@
       </div>
       <div class="question-grid">
         {% for datatb in soal %}
-          <a href="{% url 'exam:run' datatb.id %}">
-            <button class="{% if datatb.number is soal_select.number %} select {% endif %}"> {{ datatb.number }} </button>
+          <a href="{% url 'exam:run' datatb.soal.id %}">
+            <button class="
+                          {% if datatb.soal.number is soal_select.number %} select {% endif %}
+                          {% if datatb.jawab %} active {% endif %}
+                          "> {{ datatb.soal.number }} </button>
           </a>
         {% endfor %}             
       </div>
