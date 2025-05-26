@@ -14,11 +14,11 @@
     <aside class="sidebar">
       <button class="close-sidebar" onclick="toggleSidebar()">✕ Tutup</button>
       <div class="app-name">
-        <img src="/static/img/logo.png" width="30px" alt="Logo CBT">
+        <img src="{% static 'img/logo.png' %}" width="30px" alt="Logo CBT">
         <span>{{webname}}</span>
       </div>
       <div class="profile">
-        <img src="/static/img/user.png" alt="Foto Pengguna">
+        <img src="{% static 'img/user.png' %}" alt="Foto Pengguna">
         <p>{{user.first_name}}</p>
       </div>
       <div class="question-grid">
@@ -46,10 +46,6 @@
       {% endblock content %}      
     </main>
   </div> 
-
-
-
-
     
 
     <div class="alert-container" id="alert-container">

@@ -203,6 +203,20 @@ body {
 .action-buttons .btn-warning:hover {
     background: #ff6f00;
 }
+.action-buttons .btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+.action-buttons .btn-secondary:hover {
+    background: #bdbdbd;
+}
+.action-buttons .btn-danger {
+    background: #e53935;
+    color: #fff;
+}   
+.action-buttons .btn-danger:hover {
+    background: #b71c1c;
+}
 
 .action-buttons .btn-primary {
     background: #0288d1;

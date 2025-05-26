@@ -51,7 +51,10 @@ def save(request):
             }
         )
         messages.success(request, 'Jawaban Disimpan!')
-        return redirect('exam:run', id=question_next)
+        if question_next:
+            return redirect('exam:run', id=question_next)
+        else:
+            return redirect('exam:run', id=question_id)
     else:
         messages.error(request, 'Metode tidak diizinkan!')
 
@@ -87,7 +90,6 @@ def run(request, id):
             'soal': s,
             'jawab': jawab,
         })
-    
 
     soal_select = Question.objects.get(id=id)
     try:
