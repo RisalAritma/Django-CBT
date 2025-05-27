@@ -2,10 +2,14 @@
 
 {% block content %}
 
+      <div class="timer">
+        TIME OUT
+      </div>
+
       <div class="time_out-section">
-        <div class="super-big">UJIAN SELESAI</div>
+        <div class="super-big">TIME OUT!</div>
         <div class="desc">Silakan hubungi pengawas jika Anda membutuhkan bantuan.</div>
-        <a href="/" class="btn btn-primary">Kembali ke Beranda</a>
+        <a href="{% url 'exam:results' %}" class="btn btn-primary">LIHAT HASIL</a>
     </div>
 
 

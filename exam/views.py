@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from exam.models import Question, QuestionAnswer, QuestionTime
+from exam.models import Question, QuestionAnswer, QuestionTime, QuestionIndicator
 from datetime import timedelta
 from django.contrib import messages
 import random as rnd
@@ -34,6 +34,17 @@ def time_out(request):
         'heading': 'Time Out',
     }
     return render(request, 'exam/time_out.html', context)
+
+def results(request):
+    indicator = QuestionIndicator.objects.all().order_by('number')
+    context = {
+        'user': request.user,
+        'title': 'Results',
+        'heading': 'Results',
+        'indicator': indicator,
+    }
+    return render(request, 'exam/results.html', context)
+
 
 def save(request):
     if request.method == "POST":

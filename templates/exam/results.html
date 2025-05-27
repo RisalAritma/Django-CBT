@@ -1,0 +1,39 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+
+      <div class="timer">
+        RESULTS
+      </div>
+
+      <div class="time_out-section">
+        <div class="super-big">HASIL ASSESMENT</div>
+        <div class="desc">Hasil Assement Per Indikator</div>
+        <table class="cool-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Indikator</th>
+                    <th>Jawaban Benar</th>
+                    <th>Kategori</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for datatb in indicator %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ datatb.indicator }}</td>
+                    <td>Budi</td>
+                    <td><span class="table-btn table-btn-success">Aktif</span></td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+      </div>
+
+      
+
+
+    
+{% endblock content %}

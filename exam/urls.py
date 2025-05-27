@@ -8,5 +8,6 @@ urlpatterns = [
     path('save', views.save, name='save'),
     path('update_time', views.update_time, name='update_time'),
     path('time_out', views.time_out, name='time_out'),
+    path('results', views.results, name='results'),
     path('', views.index),
 ]

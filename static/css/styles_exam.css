@@ -412,3 +412,108 @@ body {
     color: #333;
     margin-bottom: 18px;
 }
+
+
+
+
+/* BUTTON UMUM */
+.btn,
+button {
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    outline: none;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+/* Warna-warna tombol umum */
+.btn-primary {
+    background: #0288d1;
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #01579b;
+}
+
+.btn-info {
+    background: #1976d2;
+    color: #fff;
+}
+.btn-info:hover {
+    background: #0d47a1;
+}
+
+.btn-warning {
+    background: #ffa000;
+    color: #fff;
+}
+.btn-warning:hover {
+    background: #ff6f00;
+}
+
+.btn-danger {
+    background: #e53935;
+    color: #fff;
+}
+.btn-danger:hover {
+    background: #b71c1c;
+}
+
+.btn-success {
+    background: #43a047;
+    color: #fff;
+}
+.btn-success:hover {
+    background: #2e7031;
+}
+
+
+/* TABEL KEREN */
+.cool-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 16px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
+}
+
+.cool-table th, .cool-table td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.cool-table th {
+    background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+    color: #fff;
+    font-weight: 700;
+    border-bottom: 2px solid #1976d2;
+}
+
+.cool-table tr {
+    border-bottom: 1.5px solid #e3f2fd;
+    transition: background 0.2s;
+}
+
+.cool-table tr:hover {
+    background: #e3f2fd;
+}
+
+.cool-table td {
+    color: #333;
+}
+
+.cool-table .table-action {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: center;
+}

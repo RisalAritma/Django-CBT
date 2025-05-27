@@ -31,6 +31,7 @@ class QuestionBank(models.Model):
     
 class QuestionIndicator(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    number = models.IntegerField()
     indicator = models.TextField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
