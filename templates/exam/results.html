@@ -19,12 +19,35 @@
                 </tr>
             </thead>
             <tbody>
-                {% for datatb in indicator %}
+                {% for datatb in data %}
                   <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ datatb.indicator }}</td>
-                    <td>Budi</td>
-                    <td><span class="table-btn table-btn-success">Aktif</span></td>
+                    <td>{{ datatb.indicator.indicator }}</td>
+                    <td>{{ datatb.answer_correct }}</td>
+                    <td>{% if datatb.indicator.indicator == 'Pedagogik guru dalam membangun Numeracy Skills Anak' or datatb.indicator.indicator == 'Pedagogik guru dalam membangun Scientific Thinking Skill Anak' %}
+                            {% if datatb.answer_correct >= 20  %}
+                              <button class="btn btn-success">Mahir</button>
+                            {% elif datatb.answer_correct >= 15  %}
+                              <button class="btn btn-primary">Terampil</button>
+                            {% elif datatb.answer_correct >= 10  %}
+                              <button class="btn btn-warning">Berkembang</button>
+                            {% else %}
+                              <button class="btn btn-danger">Dasar</button>
+                            {% endif %}
+                        {% else %}
+                            {% if datatb.answer_correct >= 4  %}
+                              <button class="btn btn-success">Mahir</button>
+                            {% elif datatb.answer_correct == 3  %}
+                              <button class="btn btn-primary">Terampil</button>
+                            {% elif datatb.answer_correct == 2  %}
+                              <button class="btn btn-warning">Berkembang</button>
+                            {% else %}
+                              <button class="btn btn-danger">Dasar</button>
+                            {% endif %}
+                        {% endif %}
+                        
+                      
+                      </td>
                 </tr>
                 {% endfor %}
                 

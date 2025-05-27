@@ -37,11 +37,31 @@ def time_out(request):
 
 def results(request):
     indicator = QuestionIndicator.objects.all().order_by('number')
+    indicator_with_answer = []
+
+    for ind in indicator:
+        answer_correct = 0
+        answer = QuestionAnswer.objects.filter(user=request.user, question__indicator=ind).order_by('-update_at')
+        for s in answer:
+            if s.random == 'ABCD' and s.answer == 'A':
+                answer_correct += 1            
+            if s.random == 'BCDA' and s.answer == 'B':
+                answer_correct += 1            
+            if s.random == 'CDAB' and s.answer == 'C':
+                answer_correct += 1            
+            if s.random == 'DABC' and s.answer == 'D':
+                answer_correct += 1            
+        indicator_with_answer.append({
+            'indicator': ind,
+            'answer_correct': answer_correct,
+        })
+            
+
     context = {
         'user': request.user,
         'title': 'Results',
         'heading': 'Results',
-        'indicator': indicator,
+        'data': indicator_with_answer,
     }
     return render(request, 'exam/results.html', context)
 
