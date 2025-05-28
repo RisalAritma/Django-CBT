@@ -1,0 +1,84 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+
+      <div class="timer">
+        RESULTS
+      </div>
+
+      <div>
+        <h1>HASIL ASSESMENT</h1>
+        <h2>Hasil Assement Per Indikator</h2>
+        <table>
+              <tr>
+                  <td width="200px">Nama Peserta</td>
+                  <td width="20px">:</td>
+                  <td>{{ user_select.first_name }}</td>
+              </tr>
+              <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td>{{ user_select.username }}</td>
+              </tr> 
+              <tr>
+                  <td>Asal PAUD</td>
+                  <td>:</td>
+                  <td>{{ user_select_profile.asal_paud }}</td>
+              </tr> 
+              <tr>
+                  <td>Lokasi PAUD</td>
+                  <td>:</td>
+                  <td>{{ user_select_profile.lokasi_paud }}</td>
+              </tr> 
+        </table>
+        <table class="cool-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Indikator</th>
+                    <th>Jawaban Benar</th>
+                    <th>Kategori</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for datatb in data %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ datatb.indicator.indicator }}</td>
+                    <td>{{ datatb.answer_correct }}</td>
+                    <td>{% if datatb.indicator.indicator == 'Pedagogik guru dalam membangun Numeracy Skills Anak' or datatb.indicator.indicator == 'Pedagogik guru dalam membangun Scientific Thinking Skill Anak' %}
+                            {% if datatb.answer_correct >= 20  %}
+                              <button class="btn btn-success">Mahir</button>
+                            {% elif datatb.answer_correct >= 15  %}
+                              <button class="btn btn-primary">Terampil</button>
+                            {% elif datatb.answer_correct >= 10  %}
+                              <button class="btn btn-warning">Berkembang</button>
+                            {% else %}
+                              <button class="btn btn-danger">Dasar</button>
+                            {% endif %}
+                        {% else %}
+                            {% if datatb.answer_correct >= 4  %}
+                              <button class="btn btn-success">Mahir</button>
+                            {% elif datatb.answer_correct == 3  %}
+                              <button class="btn btn-primary">Terampil</button>
+                            {% elif datatb.answer_correct == 2  %}
+                              <button class="btn btn-warning">Berkembang</button>
+                            {% else %}
+                              <button class="btn btn-danger">Dasar</button>
+                            {% endif %}
+                        {% endif %}
+                        
+                      
+                      </td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+      </div>
+
+      
+
+
+    
+{% endblock content %}

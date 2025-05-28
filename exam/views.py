@@ -1,15 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from exam.models import Question, QuestionAnswer, QuestionTime, QuestionIndicator
+from django.contrib.auth.models import User
+from exam.models import Question, QuestionAnswer, QuestionTime, QuestionIndicator, Profile
 from datetime import timedelta
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 import random as rnd
 import json
 
 # Create your views here.
+
+@login_required
 def index(request):
-   
+    if request.user.is_staff:
+        return redirect('exam:administrator')
     try:
         getTime = QuestionTime.objects.get(user=request.user)
         time_count = getTime.time_count
@@ -27,6 +32,34 @@ def index(request):
     return render(request, 'exam/index.html', context)
 
 
+@login_required
+def administrator(request):
+    user = Profile.objects.filter(user__is_staff=0).order_by('user')
+    data = []
+
+    for u in user:
+        time = QuestionTime.objects.filter(user=u.user).first() 
+        if not time:
+            time_count = "Belum Mulai"
+        elif time.time_count == timedelta(0):
+            time_count = "Selesai"
+        else:
+            time_count = "Sisa Waktu "+ str(time.time_count)
+
+        data.append({
+            'user': u,
+            'time': time_count,
+        })
+
+    context = {
+        'user': request.user,
+        'title': 'Administrator',
+        'heading': 'Administrator',
+        'data': data,
+    }
+    return render(request, 'exam/administrator.html', context)
+
+@login_required
 def time_out(request):
     context = {
         'user': request.user,
@@ -35,6 +68,7 @@ def time_out(request):
     }
     return render(request, 'exam/time_out.html', context)
 
+@login_required
 def results(request):
     indicator = QuestionIndicator.objects.all().order_by('number')
     indicator_with_answer = []
@@ -65,7 +99,41 @@ def results(request):
     }
     return render(request, 'exam/results.html', context)
 
+@login_required
+def result(request, id):
+    indicator = QuestionIndicator.objects.all().order_by('number')
+    indicator_with_answer = []
 
+    for ind in indicator:
+        answer_correct = 0
+        answer = QuestionAnswer.objects.filter(user=id, question__indicator=ind).order_by('-update_at')
+        for s in answer:
+            if s.random == 'ABCD' and s.answer == 'A':
+                answer_correct += 1            
+            if s.random == 'BCDA' and s.answer == 'B':
+                answer_correct += 1            
+            if s.random == 'CDAB' and s.answer == 'C':
+                answer_correct += 1            
+            if s.random == 'DABC' and s.answer == 'D':
+                answer_correct += 1            
+        indicator_with_answer.append({
+            'indicator': ind,
+            'answer_correct': answer_correct,
+        })
+            
+
+    context = {
+        'user': request.user,
+        'user_select': User.objects.get(id=id),
+        'user_select_profile': Profile.objects.get(user=id),
+        'title': 'Results',
+        'heading': 'Results',
+        'data': indicator_with_answer,
+    }
+    return render(request, 'exam/result.html', context)
+
+
+@login_required
 def save(request):
     if request.method == "POST":
         # Ambil data dari POST
@@ -91,6 +159,7 @@ def save(request):
 
 
 
+@login_required
 def start(request):
     try:
         answer_last = QuestionAnswer.objects.filter(user=request.user).order_by('-update_at').first()
@@ -107,6 +176,7 @@ def start(request):
         soal = Question.objects.order_by('number').first()
         return redirect('exam:run', id=soal.id)
     
+@login_required
 def stop(request):
     ut = QuestionTime.objects.get(user=request.user)
     ut.time_count = timedelta(0)
@@ -115,6 +185,7 @@ def stop(request):
     return redirect('exam:time_out')
 
 
+@login_required
 def run(request, id):
     soal = Question.objects.all().order_by('number')
     # Buat list baru dengan jawaban user (jika ada)
@@ -174,6 +245,7 @@ def run(request, id):
     }
     return render(request, 'exam/run.html', context)
 
+@login_required
 @csrf_exempt
 def update_time(request):
     if request.method == "POST":

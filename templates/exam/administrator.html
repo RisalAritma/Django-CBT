@@ -1,0 +1,49 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+
+      <div class="timer">
+        ADMINISTRATOR PANEL
+      </div>
+
+      <div class="time_out-section">
+        <h1>DAFTAR PESERTA</h1>
+        <h2>Daftar Proses Assement Peserta</h2>
+        <table class="cool-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Email</th>
+                    <th>Nama Peserta</th>
+                    <th>Status Assement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for datatb in data %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ datatb.user.user.username }}</td>
+                    <td>{{ datatb.user.user.first_name }}</td>
+                    <td>                        
+                        {% if datatb.time == 'Selesai' %}
+                          <a href="{% url 'exam:result' datatb.user.user.id %}">
+                            <button class="btn btn-success">{{ datatb.time }}</button>
+                          </a>
+                        {% elif datatb.time == 'Belum Mulai' %}
+                          <button class="btn btn-warning">{{ datatb.time }}</button>
+                        {% else %}
+                          <button class="btn btn-primary">{{ datatb.time }}</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+      </div>
+
+      
+
+
+    
+{% endblock content %}
