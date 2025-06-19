@@ -9,7 +9,7 @@
 
 
     <h2>{{web_name}}</h2>
-    <h2>Login</h2>
+    <br>
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -20,8 +20,19 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" class="button-primary">Login</button>
+        <p>
+        <button type="submit" class="button-primary">LOGIN</button>
+        </p>
     </form>
     <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+
+    <br>
+    <p>
+    
+    <a href="{% static 'pedoman.pdf' %}">
+        <button type="button" class="button-secondary"><font style="font-size: 10px; margin-top: 10px;">Download Pedoman Self Assement Kompetensi Guru PAUD Berbasis WEB</font></button>        
+    </a>
+    </p>
 </div>
+
 {% endblock content %}

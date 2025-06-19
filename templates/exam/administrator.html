@@ -8,7 +8,11 @@
 
       <div class="time_out-section">
         <h1>DAFTAR PESERTA</h1>
-        <h2>Daftar Proses Assement Peserta</h2>
+        <h2>Daftar Proses Assement Peserta
+            <a href="{% url 'exam:export_user_answer' %}">
+                <button class="btn btn-primary">Download Rekapan Data</button>
+            </a>
+        </h2>
         <table class="cool-table">
             <thead>
                 <tr>

@@ -11,5 +11,6 @@ urlpatterns = [
     path('results', views.results, name='results'),
     path('result/<int:id>', views.result, name='result'),
     path('administrator', views.administrator, name='administrator'),
+    path('export_user_answer', views.export_user_answer, name='export_user_answer'),
     path('', views.index),
 ]

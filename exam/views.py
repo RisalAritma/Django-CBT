@@ -6,6 +6,10 @@ from exam.models import Question, QuestionAnswer, QuestionTime, QuestionIndicato
 from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
+from tablib import Dataset
+from exam.resources import UserAnswerResource
+
 import random as rnd
 import json
 
@@ -245,8 +249,8 @@ def run(request, id):
     }
     return render(request, 'exam/run.html', context)
 
-@login_required
 @csrf_exempt
+@login_required
 def update_time(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -260,3 +264,15 @@ def update_time(request):
         except QuestionTime.DoesNotExist:
             return JsonResponse({"status": "not_found"}, status=404)
     return JsonResponse({"status": "invalid"}, status=400)
+
+
+@login_required
+def export_user_answer(request):
+    user_answer = UserAnswerResource()
+    dataset = user_answer.export()
+    response = HttpResponse(
+        dataset.export('csv'),
+        content_type='text/csv',
+    )
+    response['Content-Disposition'] = 'attachment; filename="Rekapan Data.csv"'
+    return response
